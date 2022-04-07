@@ -1,22 +1,25 @@
-name: scraper-san-juan-gobierno
+name: py
 
 on:
   schedule:
-    - cron: '0 8 * * *' # runs at 12:00 UTC everyday
+    - cron: "30 11 * * *"    #runs at 11:30 UTC everyday
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-
       - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content to github runner
-
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
       - name: setup python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.7.7' # install the python version needed
-          
-      - name: execute py script # run sj-gobierno.py to get the latest data
+          python-version: 3.8 #install the python needed
+      - name: Install dependencies
         run: |
-          python sj-gobierno.py
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: execute py script # run file
+        run: |
+          python my_file.py
