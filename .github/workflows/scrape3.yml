@@ -29,7 +29,4 @@ jobs:
           python run.py
         env:
             key: ${{ secrets.key }}
-      - name: export index
-        env:
-          key: ${{ secrets.key }}
         
